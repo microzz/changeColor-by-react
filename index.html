@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Change Color</title>
+    <style>
+        html,body {
+            padding: 0;
+            margin: 0;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+
+<script src="js/react.min.js"></script>
+<script src="js/JSXTransformer.js"></script>
+
+<script type="text/jsx">
+
+    let ChangeColor = React.createClass({
+        getInitialState() {
+            return {
+                backgroundColor: '#FFFFFF',
+                width: '100%',
+                height: '100%'
+            }
+        },
+       handleWhile(event){
+            let newColor = (parseInt(this.state.backgroundColor.substr(1),16) + event.deltaY*300).toString(16);
+            newColor = '#' + newColor.substr(newColor.length - 6).toUpperCase();
+            this.setState({
+                backgroundColor: newColor
+            })
+        },
+       render() {
+           return <div style={this.state} onWheel={this.handleWhile}></div>;
+       }
+    });
+    React.render(<ChangeColor />, document.body);
+
+</script>
+
+</body>
+</html>
